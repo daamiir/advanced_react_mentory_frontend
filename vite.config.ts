@@ -4,5 +4,5 @@ import { defineConfig } from "vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "advanced_react_mentory_frontend",
+  base: "/advanced_react_mentory_frontend",
 });
