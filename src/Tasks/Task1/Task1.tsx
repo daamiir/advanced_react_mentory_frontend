@@ -32,6 +32,7 @@ const ChildComponent = ({ title }: ChildProps) => {
     console.log("Child component mounted");
 
     return () => {
+      console.log("Child component unmounted");
       observer.disconnect();
     };
   }, []);
@@ -42,6 +43,7 @@ const ChildComponent = ({ title }: ChildProps) => {
 const ParentComponent = () => {
   const [count, setCount] = useState(0);
   const [title, setTitle] = useState("Hello from Child Component");
+  const [show, setShow] = useState(true);
 
   return (
     <div>
@@ -57,7 +59,11 @@ const ParentComponent = () => {
         Change Child Title
       </button>
 
-      <ChildComponent title={title} />
+      <button onClick={() => setShow(!show)}>
+        {show ? "Hide" : "Show"} Child Component
+      </button>
+
+      {show && <ChildComponent title={title} />}
     </div>
   );
 };
