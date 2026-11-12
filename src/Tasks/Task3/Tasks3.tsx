@@ -5,7 +5,7 @@ interface Item {
   title: string;
 }
 
-const items: Item[] = Array.from({ length: 240 }, (_, i) => ({
+const items: Item[] = Array.from({ length: 999 }, (_, i) => ({
   id: String(i),
   title: ["React", "CSS", "TypeScript"][i % 3] + " " + i,
 }));
@@ -40,13 +40,19 @@ const Search = () => {
 
   const [isPending, startTransition] = useTransition();
 
+  const [toggle, setToggle] = useState(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setText(value);
 
-    startTransition(() => {
+    if (toggle) {
+      startTransition(() => {
+        setListQuery(value);
+      });
+    } else {
       setListQuery(value);
-    });
+    }
   };
 
   return (
@@ -55,10 +61,11 @@ const Search = () => {
         Поиск
         <input value={text} onChange={handleChange} />
       </label>
-
-      {isPending && <p>Loading...</p>}
-
-      <Results query={listQuery} />
+      <button onClick={() => setToggle((prev) => !prev)}>
+        {toggle ? "useTransition режим включен" : "Обычный режим включен"}
+      </button>
+      {toggle && isPending && <p>Loading...</p>}
+      {toggle ? <Results query={listQuery} /> : <Results query={text} />}
     </>
   );
 };
