@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import courses from "../../courses.json";
 
 interface Course {
@@ -8,6 +9,7 @@ interface Course {
 const CourseCard = ({ id, title }: Course) => {
   const handlerSelect = () => {
     localStorage.setItem("selected-course", id);
+    console.log(`Selected course: ${id}`);
   };
 
   return (
@@ -19,6 +21,11 @@ const CourseCard = ({ id, title }: Course) => {
 };
 
 export const Task2 = () => {
+  useEffect(() => {
+    const id = localStorage.getItem("selected-course");
+    console.log("Selected course from localStorage:", id);
+  }, []);
+
   return (
     <div>
       {courses.map((course) => (
