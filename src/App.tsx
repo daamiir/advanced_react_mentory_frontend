@@ -7,6 +7,7 @@ import { Task5 } from "./Tasks/Task5/Task5";
 import { Task6 } from "./Tasks/Task6/Task6";
 import { Task7 } from "./Tasks/Task7/Task7";
 import { Task8 } from "./Tasks/Task8/Task8";
+import { Task9 } from "./Tasks/Task9/Task9";
 
 const navList = [
   { path: "/task1", label: "Таск 1" },
@@ -17,6 +18,7 @@ const navList = [
   { path: "/task6", label: "Таск 6" },
   { path: "/task7", label: "Task 7" },
   { path: "/task8", label: "Task 8" },
+  { path: "/task9", label: "Task 9" },
 ];
 
 export function App() {
@@ -49,6 +51,7 @@ export function App() {
             <Route path="/task6" element={<Task6 />} />
             <Route path="/task7" element={<Task7 />} />
             <Route path="/task8" element={<Task8 />} />
+            <Route path="/task9" element={<Task9 />} />
 
             <Route path="*" element={<Navigate to="/task1" replace />} />
           </Routes>
